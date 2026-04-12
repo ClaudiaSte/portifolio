@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo da Velha</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>Jogo da Velha</h1>
+    <br>
+    <p class="sub">Escolha o modo de jogo</p>
+
+    <div id="menu">
+      <button class="mode-btn" id="btn-friend">vs Amigo</button>
+      <button class="mode-btn" id="btn-bot">vs Bot</button>
+    </div>
+
+    <div id="game">
+      <div id="status"></div>
+      <div id="score"></div>
+
+      <div class="board" id="board">
+        <button class="cell" data-i="0"></button>
+        <button class="cell" data-i="1"></button>
+        <button class="cell" data-i="2"></button>
+        <button class="cell" data-i="3"></button>
+        <button class="cell" data-i="4"></button>
+        <button class="cell" data-i="5"></button>
+        <button class="cell" data-i="6"></button>
+        <button class="cell" data-i="7"></button>
+        <button class="cell" data-i="8"></button>
+      </div>
+
+      <button id="restart-btn">Reiniciar</button>
+      <button id="back-btn">Trocar modo</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

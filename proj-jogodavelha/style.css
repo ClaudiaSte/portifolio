@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+#app {
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.sub {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* Menu de seleção de modo */
+#menu {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.mode-btn {
+  padding: 10px 24px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  transition: background 0.15s;
+}
+
+.mode-btn:hover {
+  background: #f0f0f0;
+}
+
+.mode-btn.active {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #93c5fd;
+}
+
+/* Área do jogo (oculta até o modo ser escolhido) */
+#game {
+  display: none;
+}
+
+/* Tabuleiro */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 96px);
+  gap: 8px;
+  margin: 1.25rem auto;
+  width: fit-content;
+}
+
+.cell {
+  width: 96px;
+  height: 96px;
+  background: #e5e7eb;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 40px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s;
+}
+
+.cell:hover:not(.taken) {
+  background: #d1d5db;
+}
+
+.cell.taken {
+  cursor: default;
+}
+
+.cell.x-mark {
+  color: #1d4ed8;
+}
+
+.cell.o-mark {
+  color: #b91c1c;
+}
+
+.cell.winner {
+  background: #bbf7d0;
+}
+
+/* Status e placar */
+#status {
+  font-size: 15px;
+  color: #555;
+  min-height: 22px;
+  margin-bottom: 4px;
+}
+
+#score {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+/* Botões */
+#restart-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.15s;
+}
+
+#restart-btn:hover {
+  background: #f0f0f0;
+}
+
+#back-btn {
+  font-size: 13px;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  text-decoration: underline;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

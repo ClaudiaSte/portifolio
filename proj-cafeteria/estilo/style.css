@@ -1,0 +1,257 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#0b0b0b;
+color:white;
+line-height:1.6;
+}
+
+img{width:100%;display:block}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* HEADER */
+
+header{
+background:#000;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+}
+
+.logo{
+font-size:26px;
+font-weight:700;
+color:#c8a96a;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:15px;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#c8a96a;
+}
+
+.menu-btn{
+display:none;
+font-size:26px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:90vh;
+background:url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover;
+display:flex;
+align-items:center;
+}
+
+.hero-content{
+max-width:600px;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.hero p{
+margin-bottom:25px;
+}
+
+.btn{
+background:#c8a96a;
+padding:14px 28px;
+border:none;
+border-radius:6px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+opacity:.85;
+}
+
+/* SECTIONS */
+
+section{
+padding:90px 0;
+}
+
+.section-title{
+text-align:center;
+font-size:36px;
+margin-bottom:50px;
+}
+
+/* ABOUT */
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.about img{
+border-radius:10px;
+}
+
+/* MENU */
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.menu-card{
+background:#151515;
+padding:20px;
+border-radius:10px;
+text-align:center;
+transition:.3s;
+}
+
+.menu-card:hover{
+transform:translateY(-6px);
+}
+
+.menu-card h3{
+margin:10px 0;
+}
+
+.price{
+color:#c8a96a;
+font-weight:600;
+}
+
+/* REVIEWS */
+
+.reviews{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.review{
+background:#151515;
+padding:25px;
+border-radius:10px;
+}
+
+.review p{
+font-size:14px;
+margin-bottom:10px;
+}
+
+.review h4{
+color:#c8a96a;
+}
+
+/* BLOG */
+
+.blog-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.blog-card{
+background:#151515;
+border-radius:10px;
+overflow:hidden;
+}
+
+.blog-content{
+padding:20px;
+}
+
+/* CONTACT */
+
+.contact form{
+max-width:600px;
+margin:auto;
+}
+
+.contact input,
+.contact textarea{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:6px;
+}
+
+/* FOOTER */
+
+footer{
+background:#000;
+padding:35px 0;
+text-align:center;
+font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.about{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+nav ul{
+position:absolute;
+top:70px;
+left:0;
+background:#000;
+width:100%;
+flex-direction:column;
+display:none;
+}
+
+nav ul li{
+margin:20px 0;
+text-align:center;
+}
+
+nav ul.active{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+}

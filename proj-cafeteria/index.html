@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café&Prosa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo">Café&Prosa</div>
+
+            <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+            <nav>
+                <ul id="menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu-section">Menu</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Fresh Coffee In The Morning</h1>
+            <p>Experience the best coffee made with selected beans and passion.</p>
+            <button class="btn">Get Yours Now</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container about">
+            <img src="imagens/pixnio-1200x592.jpeg">
+            <div>
+                <h2>About Our Coffee</h2>
+                <p>We believe every cup of coffee should be an experience. Our beans are carefully selected and roasted
+                    to deliver the best flavor possible.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+
+            <div class="menu-grid">
+
+                <div class="menu-card">
+                    <img src="imagens/cafe-com-baunilha.png">
+                    <h3>Café com Baunilha</h3>
+                    <p class="price">$13.00</p>
+                </div>
+
+                <div class="menu-card">
+                    <img src="imagens/cafe-com-canela.png">
+                    <h3>Café com Canela</h3>
+                    <p class="price">$8.00</p>
+                </div>
+
+                <div class="menu-card">
+                    <img src="imagens/cafe-macha.png">
+                    <h3>Café Matcha</h3>
+                    <p class="price">$7.00</p>
+                </div>
+
+                <div class="menu-card">
+                    <img src="imagens/caramelo-cremoso.png">
+                    <h3>Café Caramelo Cremoso</h3>
+                    <p class="price">$8.00</p>
+                </div>
+
+                <div class="menu-card">
+                    <img src="imagens/especial-da-casa.png">
+                    <h3>Café Especial da Casa</h3>
+                    <p class="price">$12.00</p>
+                </div>
+                <div class="menu-card">
+                    <img src="imagens/cafe-tradicional.png">
+                    <h3>Café Tradicional</h3>
+                    <p class="price">$5.00</p>
+                </div>
+            </div>
+    </section>
+
+    <section id="reviews">
+        <div class="container">
+            <h2 class="section-title">Customer Reviews</h2>
+
+            <div class="reviews">
+
+                <div class="review">
+                    <p>"Best coffee I've ever tasted. Highly recommended."</p>
+                    <h4>Maria</h4>
+                </div>
+
+                <div class="review">
+                    <p>"Amazing place and incredible aroma of fresh coffee."</p>
+                    <h4>Lucas</h4>
+                </div>
+
+                <div class="review">
+                    <p>"Great service and the cappuccino is perfect."</p>
+                    <h4>Fernanda</h4>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="container">
+            <h2 class="section-title">Latest Blog</h2>
+
+            <div class="blog-grid">
+
+                <div class="blog-card">
+                    <img src="imagens/como-escolher-graos-de-cafe.png">
+                    <div class="blog-content">
+                        <h3>How Coffee Beans Are Selected</h3>
+                        <p>Learn about the process behind choosing the best beans.</p>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <img src="imagens/perfeito-cafe-da-manha.png">
+                    <div class="blog-content">
+                        <h3>Perfect Morning Coffee</h3>
+                        <p>Discover how to start your day with the perfect brew.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea rows="5" placeholder="Message"></textarea>
+                <button class="btn">Send Message</button>
+            </form>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Cafena Coffee — All Rights Reserved</p>
+    </footer>
+
+    <script>
+
+        function toggleMenu() {
+
+            const menu = document.getElementById("menu")
+            menu.classList.toggle("active")
+
+        }
+
+    </script>
+
+</body>
+
+</html>
