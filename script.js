@@ -24,7 +24,7 @@ const translations = {
     "hero-btn2": "Get in touch",
     "about-label": "About me",
     "about-title": "Passionate about building things for the web",
-    "about-text": "I am passionate about technology and web development. I enjoy transforming ideas into real projects using HTML, CSS and JavaScript, always focusing on performance, accessibility and design. Currently studying Software Engineering and constantly evolving as a developer.",
+    "about-text": "I am passionate about technology and web development. I enjoy transforming ideas into real projects using HTML, CSS and JavaScript, always focusing on performance, accessibility and design. Currently studying Systems Analysis and Development and constantly evolving as a developer.",
     "stat-projects": "Projects",
     "stat-techs": "Technologies",
     "stat-passion": "Passion",
