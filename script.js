@@ -61,7 +61,7 @@ const translations = {
     "hero-btn2": "Entrar em contato",
     "about-label": "Sobre mim",
     "about-title": "Apaixonada por criar coisas para a web",
-    "about-text": "Sou apaixonada por tecnologia e desenvolvimento web. Gosto de transformar ideias em projetos reais usando HTML, CSS e JavaScript, sempre focando em performance, acessibilidade e design. Curso Engenharia de Software e estou em constante evolução como desenvolvedora.",
+    "about-text": "Sou apaixonada por tecnologia e desenvolvimento web. Gosto de transformar ideias em projetos reais usando HTML, CSS e JavaScript, sempre focando em performance, acessibilidade e design. Curso Análise e Desenvolvimento de Sistemas e estou em constante evolução como desenvolvedora.",
     "stat-projects": "Projetos",
     "stat-techs": "Tecnologias",
     "stat-passion": "Paixão",
