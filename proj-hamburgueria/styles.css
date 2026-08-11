@@ -27,6 +27,27 @@ body{
   min-height: 100vh;
 }
 
+/* Utilitário: esconde visualmente mas mantém acessível a leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 /*Topbar / header*/ 
 .topbar {
   position: sticky;
@@ -134,6 +155,11 @@ body{
   background: #201200;
   color: #fff7e0;
   font-size: 0.9rem;
+  transition: transform 0.1s;
+}
+
+.banner button:hover {
+  transform: translateY(-1px);
 }
 
 /* Cardápio */
@@ -181,6 +207,11 @@ body{
   position: relative;
   overflow: hidden;
   border: 1px solid #262626;
+  transition: border-color 0.2s;
+}
+
+.product-card:hover {
+  border-color: #3a3a3a;
 }
 
 .product-img {
@@ -189,6 +220,7 @@ body{
   border-radius: 10px;
   object-fit: cover;
   margin-bottom: 6px;
+  background: #141414;
 }
 
 .product-title {
@@ -386,6 +418,7 @@ body{
     border-radius: 16px 16px 0 0;
     padding: 12px 16px;
     margin: 0 5vw;
+    z-index: 20;
   }
 
   body {
@@ -406,5 +439,15 @@ body{
 
   .banner {
     text-align: left;
+  }
+}
+
+/* Respeita preferência do usuário por menos animações */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

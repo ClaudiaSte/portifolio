@@ -57,23 +57,23 @@ const products = [
     image: "img/sobremesa.jpeg"
   },
   {
-    id: 7,
-    name: "Torta de Bonoffee",
+    id: 8,
+    name: "Torta de Banoffee",
     description: "Torta de origem inglesa com banana, caramelo (toffee) e creme.",
     price: 29.9,
     category: "desserts",
     image: "img/banoffee.jpeg"
   },
   {
-    id: 7,
+    id: 9,
     name: "Banana Split",
-    description: "Sobremesa americana, com banana e tres bolas de sorvete.",
+    description: "Sobremesa americana, com banana e três bolas de sorvete.",
     price: 20.9,
     category: "desserts",
     image: "img/banana.jpeg"
   },
   {
-    id: 7,
+    id: 10,
     name: "Churros com Nutella",
     description: "Massa de churros recheado com nutella e canela.",
     price: 14.99,
@@ -83,6 +83,9 @@ const products = [
 ];
 
 const DELIVERY_FEE = 6.0;
+
+// Coloque o número do WhatsApp da hamburgueria aqui (DDI + DDD + número, só dígitos)
+const WHATSAPP_NUMBER = "5599999999999"; // EXEMPLO — troque pelo número real
 
 const productListEl = document.getElementById("product-list");
 const categoryButtons = document.querySelectorAll(".category-button");
@@ -94,6 +97,7 @@ const checkoutBtn = document.getElementById("checkout-btn");
 const clearCartBtn = document.getElementById("clear-cart-btn");
 const scrollMenuBtn = document.getElementById("scroll-menu-btn");
 const menuSection = document.getElementById("menu");
+const yearEl = document.getElementById("current-year");
 
 // Objeto carrinho: { idProduto: { product, quantity } }
 const cart = {};
@@ -116,12 +120,14 @@ function renderProducts(category = "all") {
     const card = document.createElement("article");
     card.className = "product-card";
     card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" class="product-img" />
+      <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy" />
       <h3 class="product-title">${product.name}</h3>
       <p class="product-desc">${product.description}</p>
       <div class="product-footer">
         <span class="product-price">${formatPrice(product.price)}</span>
-        <button class="add-to-cart-btn" data-id="${product.id}">Adicionar</button>
+        <button type="button" class="add-to-cart-btn" data-id="${product.id}">
+          Adicionar<span class="sr-only"> ${product.name} ao carrinho</span>
+        </button>
       </div>
     `;
     productListEl.appendChild(card);
@@ -162,10 +168,10 @@ function updateCart() {
         <p class="cart-item-price">${quantity} x ${formatPrice(product.price)}</p>
       </div>
       <div class="cart-item-controls">
-        <button class="qty-btn" data-action="decrease" data-id="${product.id}">-</button>
-        <span class="qty-value">${quantity}</span>
-        <button class="qty-btn" data-action="increase" data-id="${product.id}">+</button>
-        <button class="remove-item-btn" data-action="remove" data-id="${product.id}">remover</button>
+        <button type="button" class="qty-btn" data-action="decrease" data-id="${product.id}" aria-label="Diminuir quantidade de ${product.name}">-</button>
+        <span class="qty-value" aria-live="polite">${quantity}</span>
+        <button type="button" class="qty-btn" data-action="increase" data-id="${product.id}" aria-label="Aumentar quantidade de ${product.name}">+</button>
+        <button type="button" class="remove-item-btn" data-action="remove" data-id="${product.id}" aria-label="Remover ${product.name} do carrinho">remover</button>
       </div>
     `;
     cartItemsEl.appendChild(itemEl);
@@ -224,38 +230,40 @@ function handleCategoryClick(e) {
 
   const category = button.dataset.category;
 
-  categoryButtons.forEach(btn => btn.classList.remove("active"));
+  categoryButtons.forEach(btn => {
+    btn.classList.remove("active");
+    btn.setAttribute("aria-pressed", "false");
+  });
   button.classList.add("active");
+  button.setAttribute("aria-pressed", "true");
 
   renderProducts(category);
 }
 
-// Enviar pedido via WhatsApp (simples)
+// Enviar pedido via WhatsApp
 function checkout() {
   const ids = Object.keys(cart);
   if (ids.length === 0) return;
 
-  let message = "Olá, gostaria de fazer o seguinte pedido:%0A%0A";
+  let message = "Olá, gostaria de fazer o seguinte pedido:\n\n";
   let subtotal = 0;
 
   ids.forEach(id => {
     const { product, quantity } = cart[id];
     const itemTotal = product.price * quantity;
     subtotal += itemTotal;
-    message += `• ${quantity}x ${product.name} - ${formatPrice(itemTotal)}%0A`;
+    message += `• ${quantity}x ${product.name} - ${formatPrice(itemTotal)}\n`;
   });
 
   const total = subtotal + DELIVERY_FEE;
 
-  message += `%0ASubtotal: ${formatPrice(subtotal)}`;
-  message += `%0AEntrega: ${formatPrice(DELIVERY_FEE)}`;
-  message += `%0ATotal: ${formatPrice(total)}`;
+  message += `\nSubtotal: ${formatPrice(subtotal)}`;
+  message += `\nEntrega: ${formatPrice(DELIVERY_FEE)}`;
+  message += `\nTotal: ${formatPrice(total)}`;
 
-  // Coloque o número do WhatsApp da hamburgueria aqui (somente números com DDD e DDI se quiser)
-  const phoneNumber = "5599999999999"; // EXEMPLO
-  const url = `https://wa.me/${phoneNumber}?text=${message}`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-  window.open(url, "_blank");
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 
 // Eventos
@@ -293,5 +301,8 @@ checkoutBtn.addEventListener("click", checkout);
 clearCartBtn.addEventListener("click", clearCart);
 
 // Inicialização
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
 renderProducts("all");
 updateCart();
