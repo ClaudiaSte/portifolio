@@ -23,6 +23,18 @@ function checkWinner(b) {
   return null;
 }
 
+function findWinningMove(b, player) {
+  for (let i = 0; i < 9; i++) {
+    if (!b[i]) {
+      b[i] = player;
+      const result = checkWinner(b);
+      b[i] = '';
+      if (result && result.winner === player) return i;
+    }
+  }
+  return -1;
+}
+
 // Algoritmo minimax — retorna a pontuação de cada jogada
 function minimax(b, isMax) {
   const result = checkWinner(b);
@@ -43,16 +55,27 @@ function minimax(b, isMax) {
   return isMax ? Math.max(...scores) : Math.min(...scores);
 }
 
-// Encontra a melhor jogada para o bot
-function bestMove(b) {
+// Encontra a melhor jogada para o bot (com chance de erro)
+function bestMove(b, mistakeChance = 0.5) {
+  const winMove = findWinningMove(b, 'O');
+  if (winMove !== -1) return winMove;
+
+  const blockMove = findWinningMove(b, 'X');
+  if (blockMove !== -1) return blockMove;
+
+  const emptyCells = [];
+  for (let i = 0; i < 9; i++) if (!b[i]) emptyCells.push(i);
+
+  if (Math.random() < mistakeChance) {
+    return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+  }
+
   let best = -Infinity, move = -1;
-  for (let i = 0; i < 9; i++) {
-    if (!b[i]) {
-      b[i] = 'O';
-      const s = minimax(b, false);
-      b[i] = '';
-      if (s > best) { best = s; move = i; }
-    }
+  for (const i of emptyCells) {
+    b[i] = 'O';
+    const s = minimax(b, false);
+    b[i] = '';
+    if (s > best) { best = s; move = i; }
   }
   return move;
 }
