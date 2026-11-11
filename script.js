@@ -55,7 +55,7 @@ const translations = {
     "nav-contact": "Contato",
     "hero-badge": "Disponível para trabalhar",
     "hero-hi": "Olá, eu sou",
-    "hero-role": "Desenvolvedora Front-End",
+    "hero-role": "Desenvolvedora Web",
     "hero-desc": "Crio interfaces web modernas, responsivas e de alta qualidade com código limpo e ótima experiência do usuário.",
     "hero-btn": "Ver meus projetos",
     "hero-btn2": "Entrar em contato",
