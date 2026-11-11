@@ -7,20 +7,39 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <!-- Cor da barra do navegador no celular -->
+    <meta name="theme-color" content="#0b8f5a" />
+    <title>Controle Financeiro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- MENU LATERAL: no computador fica à esquerda; no celular vira barra fixa embaixo (ver CSS) -->
     <aside class="side">
       <div class="brand">
         <span class="logo">R$</span><b>Controle Financeiro</b>
       </div>
+      <!-- data-view = nome da tela; o JS usa isso para marcar o link ativo -->
       <nav>
-        <a href="#painel" data-view="painel">Painel</a>
-        <a href="#transacoes" data-view="transacoes">Transações</a>
-        <a href="#orcamentos" data-view="orcamentos">Orçamentos</a>
-        <a href="#relatorios" data-view="relatorios">Relatórios</a>
-        <a href="#configuracoes" data-view="configuracoes">Configurações</a>
+        <a href="#painel" data-view="painel"><span class="i">▦</span>Painel</a>
+        <a href="#transacoes" data-view="transacoes"
+          ><span class="i">⇄</span>Transações</a
+        >
+        <a href="#orcamentos" data-view="orcamentos"
+          ><span class="i">◎</span>Orçamentos</a
+        >
+        <a href="#relatorios" data-view="relatorios"
+          ><span class="i">▤</span>Relatórios</a
+        >
+        <a href="#configuracoes" data-view="configuracoes"
+          ><span class="i">⚙</span>Ajustes</a
+        >
       </nav>
     </aside>
 
     <main>
+      <!-- TOPO: título da tela + botões de ação -->
       <header class="top">
         <h1 id="titulo">Painel</h1>
         <div class="actions">
@@ -31,7 +50,9 @@
         </div>
       </header>
 
+      <!-- TELA: PAINEL (resumo do mês) -->
       <section id="painel" class="view">
+        <!-- Cartões de resumo; o JS preenche os valores -->
         <div class="stats">
           <div class="card">
             <span>Receitas</span><strong class="pos" id="sRec"></strong>
@@ -51,6 +72,7 @@
               <h2>Tendência deste mês</h2>
               <a href="#relatorios">Relatórios completos →</a>
             </div>
+            <!-- Gráfico de linha (SVG gerado pelo JS) -->
             <div id="linha"></div>
             <div class="legend">
               <span><i style="--c: var(--neg)"></i>Despesas</span>
@@ -59,6 +81,7 @@
           </div>
           <div class="card">
             <div class="head"><h2>Gastos por categoria</h2></div>
+            <!-- Gráfico de rosca (SVG gerado pelo JS) -->
             <div id="rosca"></div>
             <div class="legend wrap" id="legCat"></div>
           </div>
@@ -72,6 +95,7 @@
         </div>
       </section>
 
+      <!-- TELA: TRANSAÇÕES (lista completa com filtros) -->
       <section id="transacoes" class="view">
         <div class="card">
           <div class="filters">
@@ -86,6 +110,7 @@
         </div>
       </section>
 
+      <!-- TELA: ORÇAMENTOS (limite mensal por categoria) -->
       <section id="orcamentos" class="view">
         <p class="muted">
           Defina um limite mensal por categoria. O progresso considera as
@@ -94,17 +119,20 @@
         <div class="card" id="orcLista"></div>
       </section>
 
+      <!-- TELA: RELATÓRIOS (tabelas) -->
       <section id="relatorios" class="view">
         <div class="card">
           <div class="head"><h2>Resumo por mês</h2></div>
-          <div id="relMes"></div>
+          <!-- .scroll permite rolar a tabela de lado no celular -->
+          <div id="relMes" class="scroll"></div>
         </div>
         <div class="card">
           <div class="head"><h2>Despesas por categoria (mês atual)</h2></div>
-          <div id="relCat"></div>
+          <div id="relCat" class="scroll"></div>
         </div>
       </section>
 
+      <!-- TELA: CONFIGURAÇÕES (exportar e apagar dados) -->
       <section id="configuracoes" class="view">
         <div class="card cfg">
           <div>
@@ -126,9 +154,11 @@
       </section>
     </main>
 
+    <!-- JANELA (modal) para adicionar transação; no celular abre como "gaveta" embaixo -->
     <dialog id="dlg">
       <form id="form" method="dialog">
         <h2>Nova transação</h2>
+        <!-- Escolha entre despesa e receita -->
         <div class="seg">
           <label
             ><input type="radio" name="tipo" value="despesa" checked /><span
@@ -148,10 +178,12 @@
             maxlength="60"
             placeholder="Ex.: Mercado"
         /></label>
+        <!-- inputmode="decimal" abre o teclado numérico no celular -->
         <label
           >Valor (R$)<input
             name="valor"
             type="number"
+            inputmode="decimal"
             step="0.01"
             min="0.01"
             required

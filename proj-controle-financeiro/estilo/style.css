@@ -1,3 +1,4 @@
+/* ===== CORES (tema claro e escuro) ===== */
 :root {
   --bg: #f6f9f8;
   --card: #fff;
@@ -6,10 +7,11 @@
   --mut: #64748b;
   --pri: #0b8f5a;
   --pri-s: #dff3ea;
-  --pos: #0b8f5a;
-  --neg: #e5173f;
+  --pos: #0b8f5a; /* receitas */
+  --neg: #e5173f; /* despesas */
   --neg-s: #fde4e8;
 }
+/* O JS troca data-theme="dark" no <html> ao clicar no botão de tema */
 :root[data-theme="dark"] {
   --bg: #0e1614;
   --card: #15201d;
@@ -22,13 +24,15 @@
   --neg: #ff5b78;
   --neg-s: #3a1c24;
 }
+
+/* ===== BASE ===== */
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
   display: grid;
-  grid-template-columns: 270px 1fr;
+  grid-template-columns: 270px 1fr; /* menu lateral + conteúdo */
   min-height: 100vh;
   background: var(--bg);
   color: var(--tx);
@@ -38,7 +42,10 @@ body {
     -apple-system,
     "Segoe UI",
     sans-serif;
+  -webkit-tap-highlight-color: transparent; /* tira o "flash" cinza ao tocar */
 }
+
+/* ===== MENU LATERAL ===== */
 .side {
   background: var(--card);
   border-right: 1px solid var(--line);
@@ -67,7 +74,9 @@ body {
   font-size: 14px;
 }
 nav a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 12px 14px;
   border-radius: 10px;
   color: var(--mut);
@@ -82,9 +91,16 @@ nav a.on {
 nav a:hover:not(.on) {
   background: var(--bg);
 }
+nav .i {
+  width: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
 main {
   padding: 0 24px 40px;
-  min-width: 0;
+  min-width: 0; /* evita que o conteúdo estoure a largura da tela */
 }
 .top {
   display: flex;
@@ -105,12 +121,15 @@ h2 {
   gap: 10px;
   align-items: center;
 }
+
+/* ===== BOTÕES ===== */
 .btn {
   background: var(--pri);
   color: #fff;
   border: 0;
   border-radius: 10px;
   padding: 11px 18px;
+  min-height: 44px; /* tamanho mínimo confortável para o dedo */
   font: inherit;
   font-weight: 600;
   cursor: pointer;
@@ -130,11 +149,15 @@ h2 {
   font-size: 22px;
   cursor: pointer;
   padding: 6px 10px;
+  min-width: 44px;
+  min-height: 44px;
 }
 :focus-visible {
   outline: 2px solid var(--pri);
   outline-offset: 2px;
 }
+
+/* ===== TELAS: só a que tem .on aparece ===== */
 .view {
   display: none;
   gap: 16px;
@@ -142,6 +165,8 @@ h2 {
 .view.on {
   display: grid;
 }
+
+/* ===== CARTÕES ===== */
 .card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -173,7 +198,7 @@ h2 {
 }
 .grid2 {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1fr; /* gráfico de linha maior que a rosca */
   gap: 16px;
 }
 .head {
@@ -191,6 +216,7 @@ h2 {
   white-space: nowrap;
 }
 
+/* ===== LEGENDAS DOS GRÁFICOS ===== */
 .legend {
   display: flex;
   gap: 6px 18px;
@@ -209,14 +235,15 @@ h2 {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--c);
+  background: var(--c); /* cor vem da variável --c definida no HTML/JS */
   display: inline-block;
   flex: none;
 }
 
+/* ===== GRÁFICOS (SVG) ===== */
 svg {
   width: 100%;
-  height: auto;
+  height: auto; /* o gráfico encolhe proporcionalmente no celular */
   display: block;
 }
 svg text {
@@ -228,6 +255,8 @@ svg text {
   text-align: center;
   color: var(--mut);
 }
+
+/* ===== LISTA DE TRANSAÇÕES ===== */
 .tx {
   display: flex;
   align-items: center;
@@ -255,10 +284,13 @@ svg text {
 }
 .tx .m {
   flex: 1;
-  min-width: 0;
+  min-width: 0; /* permite o texto longo ser cortado em vez de estourar */
 }
 .tx .m b {
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis; /* "..." quando a descrição é grande */
+  white-space: nowrap;
 }
 .tx .m small {
   color: var(--mut);
@@ -266,6 +298,7 @@ svg text {
 .tx .v {
   text-align: right;
   font-weight: 700;
+  white-space: nowrap;
 }
 .tx .v small {
   display: block;
@@ -284,10 +317,14 @@ svg text {
   color: var(--mut);
   cursor: pointer;
   font-size: 18px;
+  min-width: 44px;
+  min-height: 44px;
 }
 .del:hover {
   color: var(--neg);
 }
+
+/* ===== FILTROS E CAMPOS DE FORMULÁRIO ===== */
 .filters {
   display: flex;
   gap: 10px;
@@ -298,6 +335,7 @@ select,
 input:not([type="radio"]) {
   font: inherit;
   padding: 10px 12px;
+  min-height: 44px;
   border-radius: 10px;
   border: 1px solid var(--line);
   background: var(--bg);
@@ -311,6 +349,8 @@ input:not([type="radio"]) {
   color: var(--mut);
   margin: 0;
 }
+
+/* ===== ORÇAMENTOS ===== */
 .orc {
   padding: 14px 0;
   border-top: 1px solid var(--line);
@@ -340,7 +380,12 @@ input:not([type="radio"]) {
   background: var(--pri);
 }
 .bar.over i {
-  background: var(--neg);
+  background: var(--neg); /* vermelho quando passa do limite */
+}
+
+/* ===== TABELAS ===== */
+.scroll {
+  overflow-x: auto; /* rola de lado se a tabela não couber */
 }
 table {
   width: 100%;
@@ -351,6 +396,7 @@ td {
   text-align: right;
   padding: 10px 6px;
   border-top: 1px solid var(--line);
+  white-space: nowrap;
 }
 th:first-child,
 td:first-child {
@@ -361,12 +407,16 @@ th {
   font-weight: 500;
   border: 0;
 }
+
+/* ===== CONFIGURAÇÕES ===== */
 .cfg {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 20px;
   align-items: center;
 }
+
+/* ===== JANELA DE NOVA TRANSAÇÃO ===== */
 dialog {
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -388,6 +438,7 @@ form label {
   font-size: 14px;
   color: var(--mut);
 }
+/* Botões de escolha Despesa / Receita */
 .seg {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -398,12 +449,12 @@ form label {
 }
 .seg input {
   position: absolute;
-  opacity: 0;
+  opacity: 0; /* esconde o radio, o <span> faz o papel de botão */
 }
 .seg span {
   display: block;
   text-align: center;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 10px;
   cursor: pointer;
@@ -423,37 +474,114 @@ form label {
   gap: 10px;
   justify-content: flex-end;
 }
+
+/* ===== TABLET E CELULAR (até 900px) ===== */
 @media (max-width: 900px) {
+  /* Uma coluna só; sobra espaço embaixo para a barra de navegação fixa */
   body {
     grid-template-columns: 1fr;
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
   }
+  /* Menu vira barra fixa na parte de baixo da tela (fácil de alcançar com o polegar) */
   .side {
-    position: static;
+    position: fixed;
+    inset: auto 0 0 0;
     height: auto;
-    padding: 12px;
-    border: 0;
-    border-bottom: 1px solid var(--line);
+    z-index: 10;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+    border-right: 0;
+    border-top: 1px solid var(--line);
   }
   .brand {
-    border: 0;
-    padding-bottom: 10px;
-    margin: 0;
+    display: none; /* logo some para ganhar espaço */
   }
   nav {
     display: flex;
-    gap: 4px;
-    overflow-x: auto;
+    justify-content: space-around;
   }
   nav a {
-    white-space: nowrap;
+    flex: 1;
+    flex-direction: column; /* ícone em cima, texto embaixo */
+    gap: 2px;
+    padding: 6px 2px;
+    margin: 0;
+    font-size: 11px;
+    text-align: center;
+  }
+  nav .i {
+    font-size: 20px;
+  }
+  main {
+    padding: 0 16px 24px;
+  }
+  .top {
+    padding: 14px 0;
+  }
+  h1 {
+    font-size: 22px;
   }
   .stats {
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stats strong {
+    font-size: 22px;
   }
   .grid2 {
     grid-template-columns: 1fr;
   }
   .cfg {
     grid-template-columns: 1fr;
+  }
+  .cfg .btn {
+    width: 100%;
+  }
+  .card {
+    padding: 16px;
+  }
+}
+
+/* ===== CELULARES PEQUENOS (até 600px) ===== */
+@media (max-width: 600px) {
+  /* Botão de adicionar um pouco mais compacto para caber no topo */
+  #btnAdd {
+    padding: 11px 14px;
+  }
+  /* Filtros ocupam a largura toda, um embaixo do outro */
+  .filters select {
+    width: 100%;
+  }
+  /* Campo de limite do orçamento passa para baixo do nome da categoria */
+  .orc .r {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .orc input {
+    width: 100%;
+  }
+  /* 16px nos campos evita o zoom automático do iPhone ao digitar */
+  select,
+  input:not([type="radio"]) {
+    font-size: 16px;
+  }
+  .tx {
+    gap: 10px;
+  }
+  .ic {
+    width: 38px;
+    height: 38px;
+  }
+  /* Janela vira "gaveta" colada embaixo da tela */
+  dialog {
+    width: 100%;
+    max-width: none;
+    margin: auto 0 0; /* encosta no rodapé */
+    border-radius: 16px 16px 0 0;
+    padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  .row .btn {
+    flex: 1;
   }
 }
